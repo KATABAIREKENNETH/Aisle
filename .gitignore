@@ -63,6 +63,7 @@ ios/fastlane/test_output
 .env.production.local
 .env.test.local
 .env.development.local
+.env
 
 # Expo
 .expo/
