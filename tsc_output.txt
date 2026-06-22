@@ -1,0 +1,23 @@
+app/(tabs)/guest-detail.tsx(21,45): error TS2339: Property 'notes' does not exist on type 'Guest'.
+app/(tabs)/guest-detail.tsx(40,52): error TS2353: Object literal may only specify known properties, and 'rsvp_status' does not exist in type 'Partial<GuestFormData>'.
+app/(tabs)/guest-detail.tsx(57,9): error TS2353: Object literal may only specify known properties, and 'notes' does not exist in type 'Partial<GuestFormData>'.
+app/(tabs)/guest-detail.tsx(268,20): error TS2339: Property 'notes' does not exist on type 'Guest'.
+app/(tabs)/guest-detail.tsx(325,20): error TS2339: Property 'table_number' does not exist on type 'Guest'.
+app/(tabs)/guest-detail.tsx(325,50): error TS2339: Property 'table_number' does not exist on type 'Guest'.
+app/add-expense.tsx(60,58): error TS2345: Argument of type '{ title: string; amount: string; category_id: string | undefined; payment_date: string | undefined; notes: string | undefined; }' is not assignable to parameter of type 'ExpenseFormData'.
+  Types of property 'category_id' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+app/add-guest.tsx(62,54): error TS2345: Argument of type '{ name: string; email: string | null; phone: string | null; address: null; dietary_needs: string | null; plus_one: boolean; plus_one_name: string | null; group_tag: string; rsvp_status: "invited"; meal_preference: null; accommodation_needed: boolean; accessibility_needs: null; children_count: number; }' is not assignable to parameter of type 'GuestFormData'.
+  Types of property 'email' are incompatible.
+    Type 'string | null' is not assignable to type 'string | undefined'.
+      Type 'null' is not assignable to type 'string | undefined'.
+components/CustomDatePicker.tsx(3,28): error TS2307: Cannot find module '@react-native-community/datetimepicker' or its corresponding type declarations.
+lib/notifications.ts(52,7): error TS2345: Argument of type '{ date: Date; }' is not assignable to parameter of type 'NotificationTriggerInput | undefined'.
+  Property 'type' is missing in type '{ date: Date; }' but required in type 'DateTriggerInput'.
+lib/notifications.ts(66,7): error TS2345: Argument of type '{ date: Date; }' is not assignable to parameter of type 'NotificationTriggerInput | undefined'.
+  Property 'type' is missing in type '{ date: Date; }' but required in type 'DateTriggerInput'.
+lib/notifications.ts(84,37): error TS2322: Type 'Promise<{ shouldShowAlert: true; shouldPlaySound: true; shouldSetBadge: true; }>' is not assignable to type 'Promise<NotificationBehavior>'.
+  Type '{ shouldShowAlert: true; shouldPlaySound: true; shouldSetBadge: true; }' is missing the following properties from type 'NotificationBehavior': shouldShowBanner, shouldShowList
+lib/offline.ts(1,26): error TS2307: Cannot find module '@react-native-async-storage/async-storage' or its corresponding type declarations.
+lib/supabase/types.ts(1,26): error TS2307: Cannot find module '../../types/supabase' or its corresponding type declarations.

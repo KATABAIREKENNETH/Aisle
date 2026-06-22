@@ -1,0 +1,80 @@
+{
+  "expo": {
+    "name": "Aisle",
+    "slug": "aisle",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aisle.weddingplanner"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.aisle.weddingplanner"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications"
+    ],
+    "scheme": "aisle",
+    "fonts": [
+      {
+        "src": "./assets/fonts/PlayfairDisplay-Regular.ttf",
+        "family": "PlayfairDisplay",
+        "weight": "400"
+      },
+      {
+        "src": "./assets/fonts/PlayfairDisplay-Bold.ttf",
+        "family": "PlayfairDisplay",
+        "weight": "700"
+      },
+      {
+        "src": "./assets/fonts/LibreBaskerville-Italic.ttf",
+        "family": "LibreBaskerville_Italic",
+        "style": "italic"
+      },
+      {
+        "src": "./assets/fonts/Figtree-Regular.ttf",
+        "family": "Figtree_400Regular",
+        "weight": "400"
+      },
+      {
+        "src": "./assets/fonts/Figtree-Medium.ttf",
+        "family": "Figtree_500Medium",
+        "weight": "500"
+      },
+      {
+        "src": "./assets/fonts/Figtree-SemiBold.ttf",
+        "family": "Figtree_600SemiBold",
+        "weight": "600"
+      },
+      {
+        "src": "./assets/fonts/BarlowCondensed-Medium.ttf",
+        "family": "BarlowCondensed_500Medium",
+        "weight": "500"
+      },
+      {
+        "src": "./assets/fonts/DMMono-Regular.ttf",
+        "family": "DMMono_400Regular",
+        "weight": "400"
+      }
+    ]
+  }
+}
