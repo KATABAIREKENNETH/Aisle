@@ -1,6 +1,7 @@
 import { supabase } from './client';
 import type { AuthSession, User } from '../../types';
 import { logFailedLogin, logSuccessfulLogin, logPasswordReset } from '../analytics/security';
+import { decodeJWT, isTokenExpired, shouldRefreshToken, getTokenInfo } from '../utils/jwt';
 
 export async function signUp(email: string, password: string, fullName: string, phone?: string) {
   const { data, error } = await supabase.auth.signUp({
@@ -62,6 +63,22 @@ export async function getCurrentUser() {
 export async function getSession() {
   const { data: { session }, error } = await supabase.auth.getSession();
   if (error) throw error;
+  
+  // Check if access token is expired and refresh if needed
+  if (session?.access_token) {
+    const tokenInfo = getTokenInfo(session.access_token);
+    if (tokenInfo?.isExpired || shouldRefreshToken(session.access_token)) {
+      console.log('Access token expired or expiring soon, refreshing...');
+      try {
+        const refreshed = await refreshSession();
+        return refreshed.session;
+      } catch (refreshError) {
+        console.error('Failed to refresh session:', refreshError);
+        // Return original session if refresh fails
+      }
+    }
+  }
+  
   return session;
 }
 
@@ -113,5 +130,51 @@ export async function refreshSession() {
   const { data, error } = await supabase.auth.refreshSession();
 
   if (error) throw error;
+  
+  // Log token refresh for monitoring
+  if (data.session?.access_token) {
+    const tokenInfo = getTokenInfo(data.session.access_token);
+    console.log('Session refreshed. New token expires in:', tokenInfo?.timeUntilExpiry, 'seconds');
+  }
+  
   return data;
+}
+
+/**
+ * Get current JWT token information
+ */
+export async function getSessionTokenInfo() {
+  const session = await getSession();
+  if (!session?.access_token) return null;
+  
+  return getTokenInfo(session.access_token);
+}
+
+/**
+ * Check if current session is valid
+ */
+export async function isSessionValid(): Promise<boolean> {
+  try {
+    const session = await getSession();
+    if (!session?.access_token) return false;
+    
+    return !isTokenExpired(session.access_token);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Get user ID from current JWT token
+ */
+export async function getCurrentUserId(): Promise<string | null> {
+  try {
+    const session = await getSession();
+    if (!session?.access_token) return null;
+    
+    const payload = decodeJWT(session.access_token);
+    return payload?.sub || null;
+  } catch {
+    return null;
+  }
 }
