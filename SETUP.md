@@ -19,7 +19,7 @@ Before you begin, ensure you have:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd Aisla
+cd Aisle
 
 # Install dependencies
 npm install
@@ -147,12 +147,20 @@ npm run android
 - Verify environment variables are set correctly
 - Restart development server after changes
 
-### "Module not found" errors
+### "Module not found" or dependency errors
 ```bash
+# Ensure you have the correct Node.js version
+node --version  # Should be 18+
+
 # Clear cache and reinstall
-rm -rf node_modules
+rm -rf node_modules package-lock.json
 npm install
 npx expo start -c
+```
+
+If you encounter peer dependency conflicts, the project has been configured with compatible versions. Try:
+```bash
+npm install --legacy-peer-deps
 ```
 
 ### iOS build fails
@@ -222,7 +230,7 @@ For sending SMS notifications:
 ## Project Structure Overview
 
 ```
-Aisla/
+Aisle/
 ├── app/                    # Expo Router screens
 │   ├── (auth)/            # Authentication flow
 │   ├── (tabs)/            # Main app tabs
